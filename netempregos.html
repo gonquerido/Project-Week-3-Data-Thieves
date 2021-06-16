@@ -1,0 +1,1700 @@
+
+[2]
+# the main library you will need for webscraping is called Beautiful Soup
+
+from bs4 import BeautifulSoup
+
+# the second package we will need we already know it
+
+import requests
+[44]
+url = 'https://www.net-empregos.com/pesquisa-empregos.asp?chaves=&cidade=&categoria=0&zona=0&tipo=0'
+
+response = requests.get(url)
+response
+<Response [200]>
+[45]
+response.content
+b'\r\n\r\n<!DOCTYPE html>\r\n<html lang="pt-pt">\r\n<head>\r\n\r\n<!-- Global site tag (gtag.js) - Google Analytics -->\r\n<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175073-3"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag(\'js\', new Date());\r\n\r\n  gtag(\'config\', \'UA-175073-3\');\r\n  gtag(\'config\', \'AW-1068175425\');\r\n</script>\r\n\r\n\r\n<title>Empregos   - Junho 2021 - Pag. 1</title>\r\n\r\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\r\n\r\n\t<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />\r\n\t<meta http-equiv="content-language" content="pt-pt" />\r\n    <meta charset="ISO-8859-1">\r\n\r\n    <!-- External CSS libraries -->\r\n    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">\r\n    <!-- <link rel="stylesheet" type="text/css" href="/css/animate.min.css"> -->\r\n    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap-submenu.css"> -->\r\n\r\n    <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.min.css"> -->\r\n    <!-- <link rel="stylesheet" type="text/css" href="/css/magnific-popup.css"> -->\r\n    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome/css/font-awesome.min.css">\r\n    <link rel="stylesheet" type="text/css" href="/fonts/flaticon/font/flaticon.css">\r\n    <link rel="stylesheet" type="text/css" href="/fonts/linearicons/style.css">\r\n    <link rel="stylesheet" type="text/css"  href="/css/jquery.mCustomScrollbar.css">\r\n\r\n    <!-- Custom stylesheet -->\r\n    <link rel="stylesheet" type="text/css" href="/css/style.css">\r\n    <link rel="stylesheet" type="text/css" id="style_sheet" href="/css/skins/midnight-blue.css">\r\n    <link rel="stylesheet" type="text/css" href="/css/net-empregos.css">\r\n\r\n    <!-- Favicon icon -->\r\n    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\r\n    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\r\n    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\r\n    <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png">\r\n    <link rel="manifest" href="/site.webmanifest">\r\n    <meta name="msapplication-TileColor" content="#da532c">\r\n    <meta name="theme-color" content="#ffffff">\r\n\r\n\r\n    <!-- Google fonts -->\r\n    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900%7CRaleway:300,400,500,600,700&display=swap" rel="stylesheet">\r\n\r\n    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->\r\n    <link rel="stylesheet" type="text/css" href="/css/ie10-viewport-bug-workaround.css">\r\n\r\n    <!-- Just for debugging purposes. Don\'t actually copy these 2 lines! -->\r\n    <!--[if lt IE 9]><script  src="/js/ie8-responsive-file-warning.js"></script><![endif]-->\r\n    <script  src="/js/ie-emulation-modes-warning.js"></script>\r\n\r\n    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->\r\n    <!--[if lt IE 9]>\r\n    <script  src="/js/html5shiv.min.js"></script>\r\n    <script  src="/js/respond.min.js"></script>\r\n    <![endif]-->\r\n\r\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>\r\n\r\n    <!-- Ad Manager Google -->\r\n    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>\r\n\r\n    <script>\r\n    window.googletag = window.googletag || {cmd: []};\r\n    googletag.cmd.push(function() {\r\n        googletag.defineSlot(\'/1026826/Net-Empregos-Quadrado-Mobile\', [[300, 250], [250, 250], [250, 360], [336, 280]], \'div-gpt-ad-1620264316617-0\').addService(googletag.pubads());\r\n        googletag.pubads().enableSingleRequest();\r\n        googletag.enableServices();\r\n    });\r\n    </script>\r\n\r\n    <script>\r\n    window.googletag = window.googletag || {cmd: []};\r\n    googletag.cmd.push(function() {\r\n        googletag.defineSlot(\'/1026826/Net-Empregos-Coluna-Desktop\', [[300, 600], [240, 400], [300, 250], [250, 250]], \'div-gpt-ad-1620661133451-0\').addService(googletag.pubads());\r\n        googletag.pubads().enableSingleRequest();\r\n        googletag.enableServices();\r\n    });\r\n    </script>\r\n\r\n    <script>\r\n    window.googletag = window.googletag || {cmd: []};\r\n    googletag.cmd.push(function() {\r\n        var responsiveAdSlot = googletag.defineSlot(\'/1026826/Net-Empregos-Quadrado-All-Sizes\', [[930, 180], [250, 360], [980, 120], [336, 280], [250, 250], [300, 250], [750, 200], [970, 250], [728, 90], [750, 300]], \'div-gpt-ad-1622029190076-0\').addService(googletag.pubads());\r\n        var mapping = googletag.sizeMapping()\r\n                    .addSize([991, 0], [[970, 250], [750, 200], [750, 300], [980, 120], [930, 180], [728, 90]])\r\n                    .addSize([250, 0], [300, 250], [250, 250], [250, 360], [336, 280])\r\n                    .addSize([0, 0], [])\r\n                    .build();\r\n        responsiveAdSlot.defineSizeMapping(mapping);        \r\n        \r\n        googletag.pubads().enableSingleRequest();\r\n        googletag.enableServices();\r\n    });\r\n    </script>\r\n\r\n     <!-- Google Search Ads -->\r\n    <script async="async" src="https://www.google.com/adsense/search/ads.js"></script>\r\n    <script type="text/javascript" charset="utf-8">\r\n    (function(g,o){g[o]=g[o]||function(){(g[o][\'q\']=g[o][\'q\']||[]).push(\r\n    arguments)},g[o][\'t\']=1*new Date})(window,\'_googCsa\');\r\n    </script>\r\n\r\n     <!-- <script data-cfasync="false" type="text/javascript">(function(w, d) { var s = d.createElement(\'script\'); s.src = \'//cdn.adpushup.com/42664/adpushup.js\'; s.crossOrigin=\'anonymous\'; s.type = \'text/javascript\'; s.async = true; (d.getElementsByTagName(\'head\')[0] || d.getElementsByTagName(\'body\')[0]).appendChild(s); })(window, document);</script> -->\r\n<meta name="robots" content="index, follow" />\r\n<meta name="googlebot" content="index, follow" />\r\n<meta name="keywords" content="Empregos   - Pag. 1 / 2885, estagios , trabalho , curriculo , recursos humanos , formacao , carreira">\r\n<meta NAME="description" CONTENT="Empregos   - Pag. 1 / 2885">\r\n<link rel="image_src" href="/images/netempregos_fbx_pa4xodmh77r97x2.jpg" />\r\n<meta property="og:image" content="/images/netempregos_fbx_pa4xodmh77r97x2.jpg"/>\r\n\r\n\r\n        <link rel="canonical" href="https://www.net-empregos.com/pesquisa-empregos.asp?chaves=&cidade=&categoria=0&zona=0&tipo=0"/>\r\n    \r\n\r\n</head>\r\n<body>\r\n\r\n    \r\n<div class="page_loader" style="display: none;"></div>\r\n<!-- Main header start -->\r\n<header class="main-header header-transparent sticky-header header-bg text-color">\r\n    <div class="container">\r\n        <nav class="navbar navbar-expand-lg navbar-light">\r\n\r\n            <button onclick="myFunction()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">\r\n                <span id="SpanIcon" class="fa fa-bars"></span>\r\n            </button>\r\n\r\n            <a class="navbar-brand logo-2" href="/index.asp" style="width: 120px">\r\n                <img src="/img/logos/logo_novo_small.png" alt="net-empregos logo">\r\n            </a>\r\n\r\n            <div class="collapse navbar-collapse" id="navbarSupportedContent">\r\n                <ul class="navbar-nav header-ml">\r\n                    <li class="nav-item active">\r\n                        \r\n                            <a class="nav-link" href="/index.asp" id="menu-inicio" style="font-weight:bold;color: #dc3545;"><i class="fa fa-search""></i> Procurar Emprego</a>\r\n                        \r\n                    </li>\r\n\r\n                    <!--\r\n                    <li class="nav-item dropdown">\r\n                        <a class="nav-link dropdown-toggle" href="#" id="menu-ofertas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i> Ofertas Emprego</a>\r\n                        <ul class="dropdown-menu" aria-labelledby="menu-ofertas">\r\n                            <li><a class="dropdown-item" href="/index.asp">Pesquisar Ofertas</a></li>\r\n                            <li><a class="dropdown-item" href="/pesquisa-empregos.asp">Ultimas Ofertas</a></li>\r\n                            <li><a class="dropdown-item" href="/mais-emprego.asp">Ofertas por Categoria Profissional</a></li>\r\n                            <li><a class="dropdown-item" href="/mais-emprego-localidades.asp">Ofertas por Cidades</a></li>\r\n                        </ul>\r\n                    </li>\r\n                    -->\r\n\r\n                    \r\n                        <li class="nav-item dropdown">\r\n                            <a class="nav-link dropdown-toggle" href="#" id="menu-candidato" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #007bff;"><i class="fa fa-users"></i> Candidato</a>\r\n                            <ul class="dropdown-menu dm-2" aria-labelledby="menu-candidato">                            \r\n                                <li><a style="font-weight:bold" class="dropdown-item" href="/curriculo.asp"><i class="fa fa-file-text" "=""></i> Curriculo</a></li>\r\n                                <li><a class="dropdown-item" href="/mudar_pwd_c.asp"><i class="fa fa-user-circle-o" "=""></i> Perfil</a></li>\r\n                                <li><a class="dropdown-item" href="/favoritos_c.asp"><i class="fa fa-heart-o" "=""></i> Favoritos</a></li>\r\n                                <li><a class="dropdown-item" href="/logout.asp" style="color: #d81e1e;"><i class="fa fa-sign-out"></i> Sair</a></li>\r\n                            </ul>\r\n                        </li>\r\n                    \r\n                        <li class="nav-item dropdown">\r\n                            <a class="nav-link dropdown-toggle" href="#" id="menu-empresa" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #007bff;"><i class="flaticon-branch"></i> Empresa</a>\r\n                            <ul class="dropdown-menu dm-2" aria-labelledby="menu-empresa">\r\n                                <li><a style="font-weight:bold" class="dropdown-item" href="/anuncio.asp"><i class="fa fa-plus-square" "=""></i> Publicar Oferta Gr\xe1tis</a></li>\r\n                                <li><a class="dropdown-item" href="/anuncios.asp"><i class="fa fa-list-ul" "=""></i> Ofertas Activas</a></li>\r\n                                <li><a class="dropdown-item" href="/anuncios_arquivo.asp"><i class="fa fa-folder-open-o" "=""></i> Ofertas Arquivadas</a></li>\r\n                                <li><a class="dropdown-item" href="/anuncios_formacao.asp"><i class="fa fa-graduation-cap" "=""></i> Ofertas de Forma\xe7\xe3o</a></li>\r\n                                <li><a class="dropdown-item" href="/mudar_pwd_e.asp"><i class="fa fa-user-circle-o" "=""></i> Perfil</a></li>\r\n                                <li><a class="dropdown-item" href="/empresa_info.asp"><i class="fa fa-info-circle" "=""></i> Logo / Info + API</a></li>\r\n                                <li><a class="dropdown-item" href="/logout.asp" style="color: #d81e1e;"><i class="fa fa-sign-out"></i> Sair</a></li>\r\n                            </ul>\r\n                        </li>\r\n                    \r\n\r\n                    <li class="nav-item">\r\n                        <a class="nav-link" href="/formacao.asp" id="menu-formacao" style="color: #007bff;"><i class="fa fa-graduation-cap"></i> Forma\xe7\xe3o</a>\r\n                    </li>\r\n                    <li class="nav-item">\r\n                        <a class="nav-link" href="/contactos.asp" id="menu-contactos"><i class="fa fa-envelope"></i> Contactos</a>\r\n                    </li>                    \r\n                </ul>\r\n\r\n                \r\n                    <ul class="navbar-nav ml-auto">\r\n                        <li class="nav-item dropdown">\r\n                            <a class="nav-link dropdown-toggle" href="#" id="menu-login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #c40000;"><i class="fa fa-user" ></i> Login</a>\r\n                            <ul class="dropdown-menu dm-2" aria-labelledby="menu-login">\r\n                                <li><a style="color: #c40000;" class="dropdown-item" href="/loginc.asp"><i class="fa fa-users"></i> Candidato</a></li>\r\n                                <li><a style="color: #c40000;" class="dropdown-item" href="/LoginE.asp"><i class="flaticon-branch"></i> Empresa</a></li>\r\n                            </ul>\r\n                        </li>\r\n                        <li class="nav-item dropdown">\r\n                            <a class="nav-link dropdown-toggle" href="#" id="menu-registar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #c40000;"><i class="fa fa-user-plus"></i> Registar</a>\r\n                            <ul class="dropdown-menu dm-2" aria-labelledby="menu-registar">\r\n                                <li><a style="color: #c40000;" class="dropdown-item" href="/registar_novo.asp"><i class="fa fa-users"></i> Candidato</a></li>\r\n                                <li><a style="color: #c40000;" class="dropdown-item" href="/registar_empresa_2.asp"><i class="flaticon-branch"></i> Empresa</a></li>\r\n                            </ul>\r\n                        </li>\r\n                    </ul>\r\n                \r\n    \r\n                <a href="/index.asp" style="width: 50px;">\r\n                    <img src="/img/logos/blank.png" alt="logo">\r\n                </a>\r\n                \r\n            </div>\r\n        </nav>\r\n    </div>\r\n</header>\r\n<!-- Main header end -->\r\n\r\n<script type="text/javascript">\r\nfunction myFunction() {\r\n  var x = document.getElementById("SpanIcon");\r\n  if (x.className === "fa fa-bars") {\r\n    x.className = "fa fa-times";\r\n  } else {\r\n    x.className = "fa fa-bars";\r\n  }\r\n}\r\n</script>\r\n\r\n<!-- job listing section start -->\r\n<div class="job-listing-section content-area">\r\n    <div class="container">\r\n        <div class="row">\r\n            <div class="col-xl-4 col-lg-4 col-md-12">\r\n\r\n                <div id="ads-300x600-2" class="ads-300x600">\r\n                    \r\n\r\n        <!-- Net-Empregos -- Coluna - Listagem -->\r\n        <ins class="adsbygoogle"\r\n            style="display:block"\r\n            data-ad-client="ca-pub-9487857958358554"\r\n            data-ad-slot="2046327576"\r\n            data-ad-format="auto"\r\n            data-full-width-responsive="true"></ins>\r\n        <script>\r\n            (adsbygoogle = window.adsbygoogle || []).push({});\r\n        </script>\r\n\r\n\t\r\n                </div>\r\n\r\n                \r\n                <div id="ads-300x600-2" class="ads-300x600">\r\n                    \r\n\r\n    <!-- /1026826/Net-Empregos-Coluna-Desktop -->\r\n    <div id=\'div-gpt-ad-1620661133451-0\'>\r\n    <script>\r\n        googletag.cmd.push(function() { googletag.display(\'div-gpt-ad-1620661133451-0\'); });\r\n    </script>\r\n    </div>\r\n\r\n\t\t\t\t\t\r\n                </div>\r\n                \r\n\r\n            </div>\r\n\r\n            <div class="col-xl-8 col-lg-8 col-md-12">\r\n                <!-- Option bar start -->\r\n                <!-- job box start -->\r\n            <H1 class="heading-2" style="font-size:20px;font-weight:bold; color:#ca0000">Empregos   - Pag. 1 / 2885</H1>\r\n            <h3 style="font-size:15px;font-weight:100; color:#808080; padding-bottom: 5px;">51930 ofertas encontradas</h3>\r\n\r\n       \t\t\r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7437400/sales-back-office-laboratory-service-physical-textile-chemical/>Sales back office - Laboratory service ( Physical Textile & Chemical )</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7437400/sales-back-office-laboratory-service-physical-textile-chemical/">\r\n                                                                    \r\n                                                <img alt="Intertek Portugal \x96 Unipessoal Lda" src="https://upload.net-empregos.com/uploads/c71689171ff0484e97584fc667d496dd/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Porto</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Comercial / Vendas</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Intertek Portugal \x96 Unipessoal Lda</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7437400/sales-back-office-laboratory-service-physical-textile-chemical/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7484424/real-estate-asset-manager/>Real Estate Asset Manager</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7484424/real-estate-asset-manager/">\r\n                                                                    \r\n                                                <img alt="Axia Capital Lda" src="https://upload.net-empregos.com/uploads/42b450eecb124c5f9e07199bb90cdaed/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Comercial / Vendas</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Axia Capital Lda</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7484424/real-estate-asset-manager/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="my-1" style="padding: 0px; min-height: 250px;">\r\n\t\t\t\t\t        \r\n\r\n\t\t<!-- Net-Empregos -- Quadrado - Listagem -->\r\n\t\t<ins class="adsbygoogle"\r\n\t\t\tstyle="display:block"\r\n\t\t\tdata-full-width-responsive="true"\r\n\t\t\tdata-ad-client="ca-pub-9487857958358554"\r\n\t\t\tdata-ad-slot="5414726941"\r\n\t\t\tdata-ad-format="auto"\r\n\t\t\tdata-full-width-responsive="true"></ins>\r\n\t\t<script>\r\n\t\t\t(adsbygoogle = window.adsbygoogle || []).push({});\r\n\t\t</script>\r\n\t\t\t\t\r\n\t\r\n                            <br>\r\n                        </div>\r\n\t\t\t\t\t\r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7484287/junior-asset-manager/>Junior Asset Manager</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7484287/junior-asset-manager/">\r\n                                                                    \r\n                                                <img alt="Axia Capital Lda" src="https://upload.net-empregos.com/uploads/42b450eecb124c5f9e07199bb90cdaed/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Comercial / Vendas</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Axia Capital Lda</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7484287/junior-asset-manager/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7398873/comercial-consultor-imobiliario-m-f-todo-o-pais/>Comercial / Consultor Imobili\xe1rio (M/F) - Todo o Pa\xeds</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7398873/comercial-consultor-imobiliario-m-f-todo-o-pais/">\r\n                                                                    \r\n                                                <img alt="SAFTI Portugal" src="https://upload.net-empregos.com/uploads/d0ba71daba4e4945bfc6e8a06e91894a/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  ( Todas as Zonas )</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Imobili\xe1rio</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> SAFTI Portugal</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7398873/comercial-consultor-imobiliario-m-f-todo-o-pais/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7455055/dentista-para-trabalhar-na-holanda-ou-na-belgica/>Dentista para trabalhar na Holanda ou na B\xe9lgica</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7455055/dentista-para-trabalhar-na-holanda-ou-na-belgica/">\r\n                                                                    \r\n                                                <img alt="Care Force" src="https://upload.net-empregos.com/uploads/3b670fa94adb4f9fa1447b29825ebcc0/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i> Outros Locais - Estrangeiro</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Sa\xfade / Medicina / Enfermagem</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Care Force</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7455055/dentista-para-trabalhar-na-holanda-ou-na-belgica/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7482854/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f/>Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa pretende recrutar colaboradores (m/f)</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7482854/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f/">\r\n                                                                    \r\n                                                <img alt="Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Servi\xe7os T\xe9cnicos</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7482854/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div id="afscontainer1"></div>\r\n\t\t\t\t\t\r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7479993/colaboradores-estagios-profissionais-area-de-gestao-gestao-de-empresas-matematica-ou-estatistica/>Colaboradores Est\xe1gios Profissionais \xe1rea de Gest\xe3o, Gest\xe3o de Empresas, Matem\xe1tica ou Estat\xedstica</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7479993/colaboradores-estagios-profissionais-area-de-gestao-gestao-de-empresas-matematica-ou-estatistica/">\r\n                                                                    \r\n                                                <img alt="Grupo Quinta do Lago" src="https://upload.net-empregos.com/uploads/e5776692736849528ebea8c811359210/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Faro</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Gest\xe3o de Empresas / Economia</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Grupo Quinta do Lago</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7479993/colaboradores-estagios-profissionais-area-de-gestao-gestao-de-empresas-matematica-ou-estatistica/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7483006/tecnico-a-de-cozinha-pastelaria-tecnico-a-de-restaurante-bar-ref-ct833-2021/>T\xe9cnico(a) de Cozinha / Pastelaria, T\xe9cnico(a) de Restaurante / Bar  (ref.\xaa CT833-2021)</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7483006/tecnico-a-de-cozinha-pastelaria-tecnico-a-de-restaurante-bar-ref-ct833-2021/">\r\n                                                                    \r\n                                                <img alt="Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Restaura\xe7\xe3o / Bares / Pastelarias</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7483006/tecnico-a-de-cozinha-pastelaria-tecnico-a-de-restaurante-bar-ref-ct833-2021/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7482994/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-com-12-ano/>Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa pretende recrutar colaboradores (m/f) com 12.\xba ano</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7482994/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-com-12-ano/">\r\n                                                                    \r\n                                                <img alt="Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Contabilidade / Finan\xe7as</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7482994/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-com-12-ano/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n\r\n                        <div class="my-1" style="padding: 0px; min-height: 90px;">\r\n\t\t\t\t\t        \r\n\r\n        <!-- Net-Empregos -- Linha - Listagem -->\r\n        <ins class="adsbygoogle"\r\n            style="display:block"\r\n            data-ad-format="fluid"\r\n            data-ad-layout-key="-h2+v-l-ix+10l"\r\n            data-ad-client="ca-pub-9487857958358554"\r\n            data-ad-slot="1994356687"></ins>\r\n        <script>\r\n            (adsbygoogle = window.adsbygoogle || []).push({});\r\n        </script>\r\n\r\n\t\r\n                            <br>\r\n                        </div>\r\n\r\n\t\t\t\t\t\r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7445062/enfermeiros-m-f-para-holanda/>Enfermeiros (m/f) para Holanda</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7445062/enfermeiros-m-f-para-holanda/">\r\n                                                                    \r\n                                                <img alt="Care Force" src="https://upload.net-empregos.com/uploads/3b670fa94adb4f9fa1447b29825ebcc0/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i> Outros Locais - Estrangeiro</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Sa\xfade / Medicina / Enfermagem</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Care Force</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7445062/enfermeiros-m-f-para-holanda/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7482937/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-licenciados/>Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa pretende recrutar colaboradores (m/f) licenciados</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7482937/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-licenciados/">\r\n                                                                    \r\n                                                <img alt="Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Gest\xe3o RH</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7482937/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-licenciados/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7482928/licenciados-em-ciencia-da-informacao-ciencias-da-informacao-e-da-documentacao-ref-aq1113-2021/>Licenciados em Ci\xeancia da Informa\xe7\xe3o, Ci\xeancias da Informa\xe7\xe3o e da Documenta\xe7\xe3o (ref.\xaa AQ1113-2021)</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7482928/licenciados-em-ciencia-da-informacao-ciencias-da-informacao-e-da-documentacao-ref-aq1113-2021/">\r\n                                                                    \r\n                                                <img alt="Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Educa\xe7\xe3o / Forma\xe7\xe3o</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7482928/licenciados-em-ciencia-da-informacao-ciencias-da-informacao-e-da-documentacao-ref-aq1113-2021/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7472438/customer-support-representative-swedish-speaking/>Customer Support representative - Swedish Speaking</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7472438/customer-support-representative-swedish-speaking/">\r\n                                                                    \r\n                                                <img alt="Global Shares " src="https://upload.net-empregos.com/uploads/f27fc6865d0746e08826649c515baf25/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Call Center / Help Desk</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Global Shares </li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7472438/customer-support-representative-swedish-speaking/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7381506/empresa-de-construcao-civil-admite-encarregado-de-obra-para-lisboa/>Empresa de Constru\xe7\xe3o Civil Admite Encarregado de Obra para Lisboa</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7381506/empresa-de-construcao-civil-admite-encarregado-de-obra-para-lisboa/">\r\n                                                                    \r\n                                                <img alt="SALVARIA, LDA" src="https://upload.net-empregos.com/uploads/8b0c33e92d64407b8358c29f770edfbc/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Constru\xe7\xe3o Civil</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> SALVARIA, LDA</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7381506/empresa-de-construcao-civil-admite-encarregado-de-obra-para-lisboa/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="my-1" style="padding: 0px; min-height: 250px;">\r\n\t\t\t\t\t        \r\n\r\n\t\t<!-- Net-Empregos -- Quadrado - Listagem -->\r\n\t\t<ins class="adsbygoogle"\r\n\t\t\tstyle="display:block"\r\n\t\t\tdata-full-width-responsive="true"\r\n\t\t\tdata-ad-client="ca-pub-9487857958358554"\r\n\t\t\tdata-ad-slot="5414726941"\r\n\t\t\tdata-ad-format="auto"\r\n\t\t\tdata-full-width-responsive="true"></ins>\r\n\t\t<script>\r\n\t\t\t(adsbygoogle = window.adsbygoogle || []).push({});\r\n\t\t</script>\r\n\t\t\t\t\r\n\t\r\n                            <br>\r\n                        </div>\r\n\t\t\t\t\t\r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7482948/tecnico-a-de-secretariado-ref-sc0357-2021/>T\xe9cnico/a de Secretariado (ref.\xaa SC0357-2021)</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7482948/tecnico-a-de-secretariado-ref-sc0357-2021/">\r\n                                                                    \r\n                                                <img alt="Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Lisboa</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Administra\xe7\xe3o / Secretariado</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Sistema de Informa\xe7\xf5es da Rep\xfablica Portuguesa</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7482948/tecnico-a-de-secretariado-ref-sc0357-2021/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7481332/agente-era-vila-do-conde/>Agente ERA - Vila do Conde</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7481332/agente-era-vila-do-conde/">\r\n                                                                    \r\n                                                <img alt="ERA Vila do Conde" src="https://upload.net-empregos.com/uploads/3c0747357d9940cb9151565fbd978fc8/logo-net-empregos.jpg" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Porto</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Imobili\xe1rio</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> ERA Vila do Conde</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7481332/agente-era-vila-do-conde/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7423344/auxiliar-de-armazem-3-vagas-santo-tirso/>Auxiliar de armaz\xe9m (3 vagas) - Santo Tirso </a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7423344/auxiliar-de-armazem-3-vagas-santo-tirso/">\r\n                                                                    \r\n                                                <img alt="CARVIDET - Higiene Industrial, Lda" src="https://upload.net-empregos.com/uploads/50426449a97d44eda66e6ddf6fdf5210/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Porto</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Transportes / Log\xedstica</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> CARVIDET - Higiene Industrial, Lda</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7423344/auxiliar-de-armazem-3-vagas-santo-tirso/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n                        <div class="job-item job-item-destaque media">\r\n                        <label>&nbsp;Oferta em Destaque&nbsp;</label>                    \r\n                    \r\n\r\n                    <div class="media-body align-self-center" style="padding-left: 5px;">\r\n                        <h2 style="font-size:20px;margin: 0px -5x;"><a style="font-weight:bold" href=/7408812/rececionista-night-auditor-grupo-quinta-do-lago-the-magnolia-hotel-m-f/>Rececionista - Night Auditor (Grupo Quinta do Lago/ The Magnolia Hotel - (M/F)</a></h2>\r\n                        <div class="row">\r\n                            <div class="col-2">\r\n                                <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">\r\n                                <div style="width: 100px; height: 72px; width:100%; height:100%;">\r\n                                        <a href="/7408812/rececionista-night-auditor-grupo-quinta-do-lago-the-magnolia-hotel-m-f/">\r\n                                                                    \r\n                                                <img alt="Grupo Quinta do Lago" src="https://upload.net-empregos.com/uploads/e5776692736849528ebea8c811359210/logo-net-empregos.png" class="net-img-logo" loading="lazy" style="width: auto; height: auto">\r\n                                            \r\n                                        </a>\r\n                                </div>\r\n                                </div>\r\n                            </div>\r\n                            <div class="col-10" style="padding-left: 30px;">\r\n                                <div class="job-ad-item">\r\n                                    <ul>\r\n                                        <li><i class="flaticon-calendar" style="color: #f19d35;"></i> 16-6-2021</li>\r\n                                        <li><i class="flaticon-pin" style="color: #d81e1e;"></i>  Faro</li>\r\n                                        <br>\r\n                                        <li><i class="fa fa-tags" style="color: #4da95d;"></i> Hotelaria / Turismo</li>\r\n                                        <br>                                \r\n                                        <li style="font-weight:bold"><i class="flaticon-work" style="color: #007bff;"></i> Grupo Quinta do Lago</li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class="div-right">\r\n                            <a href=/7408812/rececionista-night-auditor-grupo-quinta-do-lago-the-magnolia-hotel-m-f/ class="apply-button">Ver Oferta</a>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n\t\t\t    \r\n\r\n    <!-- /1026826/Net-Empregos-Quadrado-All-Sizes -->\r\n    <div id=\'div-gpt-ad-1622029190076-0\'>\r\n        <script>\r\n            googletag.cmd.push(function() { googletag.display(\'div-gpt-ad-1622029190076-0\'); });\r\n        </script>\r\n    </div>\r\n\r\n\r\n\r\n                <div class="pagination-box pb text-center">\r\n                    <nav aria-label="Pagina">\r\n                        <ul class="pagination">\r\n                            \r\n                                <li class="page-item">\r\n                                \r\n                                    <span class="page-link active">1</span>\r\n                                \r\n                                </li>\r\n                            \r\n                                <li class="page-item">\r\n                                \r\n                                    <a class="page-link" href="/pesquisa-empregos.asp?page=2&categoria=0&zona=0&tipo=0">2</a>\r\n                                \r\n                                </li>\r\n                            \r\n                                <li class="page-item">\r\n                                \r\n                                    <a class="page-link" href="/pesquisa-empregos.asp?page=3&categoria=0&zona=0&tipo=0">3</a>\r\n                                \r\n                                </li>\r\n                            \r\n                                <li class="page-item">\r\n                                \r\n                                    <a class="page-link" href="/pesquisa-empregos.asp?page=4&categoria=0&zona=0&tipo=0">4</a>\r\n                                \r\n                                </li>\r\n                            \r\n                                <li class="page-item">\r\n                                    <a class="page-link d-none d-lg-block" href="/pesquisa-empregos.asp?page=2&categoria=0&zona=0&tipo=0">Pr\xf3ximo <i class="fa fa-arrow-right"></i></a>\r\n                                    <a class="page-link d-lg-none" href="/pesquisa-empregos.asp?page=2&categoria=0&zona=0&tipo=0"><i class="fa fa-arrow-right"></i></a>\r\n                                </li>\r\n                            \r\n                        </ul>\r\n                    </nav>\r\n                </div>\r\n                    \r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!-- job listing section end -->\r\n<!-- Footer start -->\r\n<footer class="footer" style="background: none; background-color: #376bff; color: #fff">\r\n    <div class="container footer-inner">\r\n        <div class="row">\r\n            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">\r\n                <div class="footer-item clearfix">\r\n                    <img src="/img/logos/logo_white.png" alt="logo" class="f-logo" style="height:60px">\r\n                </div>\r\n            </div>\r\n            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">\r\n                <div class="footer-item">\r\n                    <h4>Net-Empregos</h4>\r\n                    <br>\r\n                    <ul class="links">\r\n                        <li>\r\n                            <a href="/sobre.asp">Acerca</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/politica-privacidade.asp">Pol\xedtica de Privacidade e Termos de Utiliza\xe7\xe3o</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/publicidade_info.asp">Publicidade</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/contactos.asp">Contactos</a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">\r\n                <div class="footer-item">\r\n                    <h4>Ofertas Emprego</h4>\r\n                    <br>\r\n                    <ul class="links">\r\n                        <li>\r\n                            <a href="/pesquisa-empregos.asp">Ultimas Ofertas</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/mais-emprego-localidades.asp">Ofertas por Cidades</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/mais-emprego.asp">Ofertas por Categoria</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/mais-emprego-cidades-categorias-html.asp">Ofertas por Distrito e Categoria</a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">\r\n                <div class="footer-item">\r\n                    <h4>Candidato</h4>\r\n                    <br>\r\n                    <ul class="links">\r\n                        <li>\r\n                            <a href="/loginc.asp">Login Candidato</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/registar_novo.asp">Registar Candidato</a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">\r\n                <div class="footer-item clearfix">\r\n                    <h4>Empresa</h4>\r\n                    <br>\r\n                     <ul class="links">\r\n                         <li>\r\n                            <a href="/anuncio.asp">Publicar Oferta Gr\xe1tis</a>\r\n                        </li>                         \r\n                        <li>\r\n                            <a href="/LoginE.asp">Login Empresa</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="/registar_empresa_2.asp">Registar Empresa</a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n             <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">\r\n                <div class="footer-item clearfix">\r\n                    <h4>Siga-nos!</h4>\r\n                    <br>\r\n                     <ul class="links">\r\n                        <li>\r\n                            <a href="https://www.facebook.com/netempregos" target="_blank">Facebook</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="https://twitter.com/netempregos" target="_blank">Twitter</a>\r\n                        </li>\r\n                        <li>\r\n                            <a href="https://www.linkedin.com/company/net-empregos" target="_blank">LinkedIn</a>\r\n                        </li>\r\n                         <li>\r\n                            <a href="https://feeds.feedburner.com/Net-empregos" target="_blank">RSS Feed</a>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class="sub-footer">\r\n        <div class="container">\r\n            <div class="row">\r\n                <div class="col-xl-9 col-lg-9 col-md-12">\r\n                    <p class="copy">2021 <a href="#">Net-Empregos | Cen\xe1rio Virtual Lda</a></p>\r\n                </div>\r\n                <div class="col-xl-3 col-lg-3 col-md-12">\r\n                    <ul class="social-list clearfix">\r\n                        <li><a href="https://www.facebook.com/netempregos" target="_blank"><i class="fa fa-facebook"></i></a></li>\r\n                        <li><a href="https://twitter.com/netempregos" target="_blank"><i class="fa fa-twitter"></i></a></li>\r\n                        <li><a href="https://www.linkedin.com/company/net-empregos" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>                        \r\n                        <li><a href="https://feeds.feedburner.com/Net-empregos" target="_blank"><i class="fa fa-rss"></i></a></li>\r\n                    </ul>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</footer>\r\n<!-- Footer end -->\r\n\r\n<script src="/js/jquery-2.2.0.min.js"></script>\r\n<script src="/js/popper.min.js"></script>\r\n<script src="/js/bootstrap.min.js"></script>\r\n<script  src="/js/bootstrap-submenu.js"></script>\r\n<script  src="/js/bootstrap-select.min.js"></script>\r\n<script  src="/js/jquery.easing.1.3.js"></script>\r\n<script  src="/js/jquery.scrollUp.js"></script>\r\n<script  src="/js/jquery.mCustomScrollbar.concat.min.js"></script>\r\n<script  src="/js/moment.min.js"></script>\r\n<script  src="/js/jquery.filterizr.js"></script>\r\n<!--<script  src="/js/jquery.magnific-popup.min.js"></script>-\r\n<script  src="/js/jquery.countdown.js"></script>-->\r\n<script  src="/js/app.js?v=1.01"></script>\r\n\r\n<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->\r\n<script  src="/js/ie10-viewport-bug-workaround.js"></script>\r\n<!-- Custom javascript -->\r\n<script  src="/js/ie10-viewport-bug-workaround.js"></script>\r\n\r\n\r\n<script type="text/javascript">\r\n\r\n    $(\'#btn-voltar\').on( \'click\', function () {\r\n        window.history.back();\r\n    } );\r\n\r\n</script>\r\n\r\n\r\n\r\n<script type="text/javascript" charset="utf-8">\r\n\r\n  var pageOptions = {\r\n    "pubId": "partner-pub-9487857958358554", // Confira se o ID do cliente est? correto.    \r\n    "query": "emprego", // Confira se a consulta correta foi inserida.\r\n    "styleId": "9617462265"\r\n  };\r\n\r\n  var adblock1 = {\r\n    "container": "afscontainer1"\r\n  };\r\n\r\n  var adblock2 = {\r\n    "container": "afscontainer2"\r\n  };\r\n\r\n  _googCsa(\'ads\', pageOptions, adblock1, adblock2);\r\n\r\n</script>\r\n\r\n</body></html>\r\n'
+[53]
+soup = BeautifulSoup(response.content)
+[54]
+print(soup.prettify())
+<!DOCTYPE html>
+<html lang="pt-pt">
+ <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-175073-3">
+  </script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-175073-3');
+  gtag('config', 'AW-1068175425');
+  </script>
+  <title>
+   Empregos   - Junho 2021 - Pag. 1
+  </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+  <meta content="pt-pt" http-equiv="content-language"/>
+  <meta charset="utf-8"/>
+  <!-- External CSS libraries -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <!-- <link rel="stylesheet" type="text/css" href="/css/animate.min.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap-submenu.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/bootstrap-select.min.css"> -->
+  <!-- <link rel="stylesheet" type="text/css" href="/css/magnific-popup.css"> -->
+  <link href="/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/fonts/flaticon/font/flaticon.css" rel="stylesheet" type="text/css"/>
+  <link href="/fonts/linearicons/style.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
+  <!-- Custom stylesheet -->
+  <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/skins/midnight-blue.css" id="style_sheet" rel="stylesheet" type="text/css"/>
+  <link href="/css/net-empregos.css" rel="stylesheet" type="text/css"/>
+  <!-- Favicon icon -->
+  <link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/favicon-144x144.png" rel="icon" sizes="144x144" type="image/png"/>
+  <link href="/site.webmanifest" rel="manifest"/>
+  <meta content="#da532c" name="msapplication-TileColor"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900%7CRaleway:300,400,500,600,700&amp;display=swap" rel="stylesheet"/>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet" type="text/css"/>
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script  src="/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="/js/ie-emulation-modes-warning.js">
+  </script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script  src="/js/html5shiv.min.js"></script>
+    <script  src="/js/respond.min.js"></script>
+    <![endif]-->
+  <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Ad Manager Google -->
+  <script async="" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js">
+  </script>
+  <script>
+   window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+        googletag.defineSlot('/1026826/Net-Empregos-Quadrado-Mobile', [[300, 250], [250, 250], [250, 360], [336, 280]], 'div-gpt-ad-1620264316617-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+  </script>
+  <script>
+   window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+        googletag.defineSlot('/1026826/Net-Empregos-Coluna-Desktop', [[300, 600], [240, 400], [300, 250], [250, 250]], 'div-gpt-ad-1620661133451-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+  </script>
+  <script>
+   window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+        var responsiveAdSlot = googletag.defineSlot('/1026826/Net-Empregos-Quadrado-All-Sizes', [[930, 180], [250, 360], [980, 120], [336, 280], [250, 250], [300, 250], [750, 200], [970, 250], [728, 90], [750, 300]], 'div-gpt-ad-1622029190076-0').addService(googletag.pubads());
+        var mapping = googletag.sizeMapping()
+                    .addSize([991, 0], [[970, 250], [750, 200], [750, 300], [980, 120], [930, 180], [728, 90]])
+                    .addSize([250, 0], [300, 250], [250, 250], [250, 360], [336, 280])
+                    .addSize([0, 0], [])
+                    .build();
+        responsiveAdSlot.defineSizeMapping(mapping);        
+        
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+  </script>
+  <!-- Google Search Ads -->
+  <script async="async" src="https://www.google.com/adsense/search/ads.js">
+  </script>
+  <script charset="utf-8" type="text/javascript">
+   (function(g,o){g[o]=g[o]||function(){(g[o]['q']=g[o]['q']||[]).push(
+    arguments)},g[o]['t']=1*new Date})(window,'_googCsa');
+  </script>
+  <!-- <script data-cfasync="false" type="text/javascript">(function(w, d) { var s = d.createElement('script'); s.src = '//cdn.adpushup.com/42664/adpushup.js'; s.crossOrigin='anonymous'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script> -->
+  <meta content="index, follow" name="robots"/>
+  <meta content="index, follow" name="googlebot"/>
+  <meta content="Empregos   - Pag. 1 / 2885, estagios , trabalho , curriculo , recursos humanos , formacao , carreira" name="keywords"/>
+  <meta content="Empregos   - Pag. 1 / 2885" name="description"/>
+  <link href="/images/netempregos_fbx_pa4xodmh77r97x2.jpg" rel="image_src"/>
+  <meta content="/images/netempregos_fbx_pa4xodmh77r97x2.jpg" property="og:image"/>
+  <link href="https://www.net-empregos.com/pesquisa-empregos.asp?chaves=&amp;cidade=&amp;categoria=0&amp;zona=0&amp;tipo=0" rel="canonical"/>
+ </head>
+ <body>
+  <div class="page_loader" style="display: none;">
+  </div>
+  <!-- Main header start -->
+  <header class="main-header header-transparent sticky-header header-bg text-color">
+   <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+     <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" onclick="myFunction()" type="button">
+      <span class="fa fa-bars" id="SpanIcon">
+      </span>
+     </button>
+     <a class="navbar-brand logo-2" href="/index.asp" style="width: 120px">
+      <img alt="net-empregos logo" src="/img/logos/logo_novo_small.png"/>
+     </a>
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav header-ml">
+       <li class="nav-item active">
+        <a class="nav-link" href="/index.asp" id="menu-inicio" style="font-weight:bold;color: #dc3545;">
+         <i class="fa fa-search">
+         </i>
+         Procurar Emprego
+        </a>
+       </li>
+       <!--
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="menu-ofertas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"></i> Ofertas Emprego</a>
+                        <ul class="dropdown-menu" aria-labelledby="menu-ofertas">
+                            <li><a class="dropdown-item" href="/index.asp">Pesquisar Ofertas</a></li>
+                            <li><a class="dropdown-item" href="/pesquisa-empregos.asp">Ultimas Ofertas</a></li>
+                            <li><a class="dropdown-item" href="/mais-emprego.asp">Ofertas por Categoria Profissional</a></li>
+                            <li><a class="dropdown-item" href="/mais-emprego-localidades.asp">Ofertas por Cidades</a></li>
+                        </ul>
+                    </li>
+                    -->
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="menu-candidato" style="color: #007bff;">
+         <i class="fa fa-users">
+         </i>
+         Candidato
+        </a>
+        <ul aria-labelledby="menu-candidato" class="dropdown-menu dm-2">
+         <li>
+          <a class="dropdown-item" href="/curriculo.asp" style="font-weight:bold">
+           <i class="fa fa-file-text">
+           </i>
+           Curriculo
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/mudar_pwd_c.asp">
+           <i class="fa fa-user-circle-o">
+           </i>
+           Perfil
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/favoritos_c.asp">
+           <i class="fa fa-heart-o">
+           </i>
+           Favoritos
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/logout.asp" style="color: #d81e1e;">
+           <i class="fa fa-sign-out">
+           </i>
+           Sair
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="menu-empresa" style="color: #007bff;">
+         <i class="flaticon-branch">
+         </i>
+         Empresa
+        </a>
+        <ul aria-labelledby="menu-empresa" class="dropdown-menu dm-2">
+         <li>
+          <a class="dropdown-item" href="/anuncio.asp" style="font-weight:bold">
+           <i class="fa fa-plus-square">
+           </i>
+           Publicar Oferta Grátis
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/anuncios.asp">
+           <i class="fa fa-list-ul">
+           </i>
+           Ofertas Activas
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/anuncios_arquivo.asp">
+           <i class="fa fa-folder-open-o">
+           </i>
+           Ofertas Arquivadas
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/anuncios_formacao.asp">
+           <i class="fa fa-graduation-cap">
+           </i>
+           Ofertas de Formação
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/mudar_pwd_e.asp">
+           <i class="fa fa-user-circle-o">
+           </i>
+           Perfil
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/empresa_info.asp">
+           <i class="fa fa-info-circle">
+           </i>
+           Logo / Info + API
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/logout.asp" style="color: #d81e1e;">
+           <i class="fa fa-sign-out">
+           </i>
+           Sair
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/formacao.asp" id="menu-formacao" style="color: #007bff;">
+         <i class="fa fa-graduation-cap">
+         </i>
+         Formação
+        </a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/contactos.asp" id="menu-contactos">
+         <i class="fa fa-envelope">
+         </i>
+         Contactos
+        </a>
+       </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="menu-login" style="color: #c40000;">
+         <i class="fa fa-user">
+         </i>
+         Login
+        </a>
+        <ul aria-labelledby="menu-login" class="dropdown-menu dm-2">
+         <li>
+          <a class="dropdown-item" href="/loginc.asp" style="color: #c40000;">
+           <i class="fa fa-users">
+           </i>
+           Candidato
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/LoginE.asp" style="color: #c40000;">
+           <i class="flaticon-branch">
+           </i>
+           Empresa
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="menu-registar" style="color: #c40000;">
+         <i class="fa fa-user-plus">
+         </i>
+         Registar
+        </a>
+        <ul aria-labelledby="menu-registar" class="dropdown-menu dm-2">
+         <li>
+          <a class="dropdown-item" href="/registar_novo.asp" style="color: #c40000;">
+           <i class="fa fa-users">
+           </i>
+           Candidato
+          </a>
+         </li>
+         <li>
+          <a class="dropdown-item" href="/registar_empresa_2.asp" style="color: #c40000;">
+           <i class="flaticon-branch">
+           </i>
+           Empresa
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
+      <a href="/index.asp" style="width: 50px;">
+       <img alt="logo" src="/img/logos/blank.png"/>
+      </a>
+     </div>
+    </nav>
+   </div>
+  </header>
+  <!-- Main header end -->
+  <script type="text/javascript">
+   function myFunction() {
+  var x = document.getElementById("SpanIcon");
+  if (x.className === "fa fa-bars") {
+    x.className = "fa fa-times";
+  } else {
+    x.className = "fa fa-bars";
+  }
+}
+  </script>
+  <!-- job listing section start -->
+  <div class="job-listing-section content-area">
+   <div class="container">
+    <div class="row">
+     <div class="col-xl-4 col-lg-4 col-md-12">
+      <div class="ads-300x600" id="ads-300x600-2">
+       <!-- Net-Empregos -- Coluna - Listagem -->
+       <ins class="adsbygoogle" data-ad-client="ca-pub-9487857958358554" data-ad-format="auto" data-ad-slot="2046327576" data-full-width-responsive="true" style="display:block">
+       </ins>
+       <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+       </script>
+      </div>
+      <div class="ads-300x600" id="ads-300x600-2">
+       <!-- /1026826/Net-Empregos-Coluna-Desktop -->
+       <div id="div-gpt-ad-1620661133451-0">
+        <script>
+         googletag.cmd.push(function() { googletag.display('div-gpt-ad-1620661133451-0'); });
+        </script>
+       </div>
+      </div>
+     </div>
+     <div class="col-xl-8 col-lg-8 col-md-12">
+      <!-- Option bar start -->
+      <!-- job box start -->
+      <h1 class="heading-2" style="font-size:20px;font-weight:bold; color:#ca0000">
+       Empregos   - Pag. 1 / 2885
+      </h1>
+      <h3 style="font-size:15px;font-weight:100; color:#808080; padding-bottom: 5px;">
+       51930 ofertas encontradas
+      </h3>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7437400/sales-back-office-laboratory-service-physical-textile-chemical/" style="font-weight:bold">
+          Sales back office - Laboratory service ( Physical Textile &amp; Chemical )
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7437400/sales-back-office-laboratory-service-physical-textile-chemical/">
+             <img alt="Intertek Portugal  Unipessoal Lda" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/c71689171ff0484e97584fc667d496dd/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Porto
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Comercial / Vendas
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Intertek Portugal  Unipessoal Lda
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7437400/sales-back-office-laboratory-service-physical-textile-chemical/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7484424/real-estate-asset-manager/" style="font-weight:bold">
+          Real Estate Asset Manager
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7484424/real-estate-asset-manager/">
+             <img alt="Axia Capital Lda" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/42b450eecb124c5f9e07199bb90cdaed/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Comercial / Vendas
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Axia Capital Lda
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7484424/real-estate-asset-manager/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="my-1" style="padding: 0px; min-height: 250px;">
+       <!-- Net-Empregos -- Quadrado - Listagem -->
+       <ins class="adsbygoogle" data-ad-client="ca-pub-9487857958358554" data-ad-format="auto" data-ad-slot="5414726941" data-full-width-responsive="true" style="display:block">
+       </ins>
+       <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+       </script>
+       <br/>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7484287/junior-asset-manager/" style="font-weight:bold">
+          Junior Asset Manager
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7484287/junior-asset-manager/">
+             <img alt="Axia Capital Lda" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/42b450eecb124c5f9e07199bb90cdaed/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Comercial / Vendas
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Axia Capital Lda
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7484287/junior-asset-manager/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7398873/comercial-consultor-imobiliario-m-f-todo-o-pais/" style="font-weight:bold">
+          Comercial / Consultor Imobiliário (M/F) - Todo o País
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7398873/comercial-consultor-imobiliario-m-f-todo-o-pais/">
+             <img alt="SAFTI Portugal" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/d0ba71daba4e4945bfc6e8a06e91894a/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             ( Todas as Zonas )
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Imobiliário
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             SAFTI Portugal
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7398873/comercial-consultor-imobiliario-m-f-todo-o-pais/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7455055/dentista-para-trabalhar-na-holanda-ou-na-belgica/" style="font-weight:bold">
+          Dentista para trabalhar na Holanda ou na Bélgica
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7455055/dentista-para-trabalhar-na-holanda-ou-na-belgica/">
+             <img alt="Care Force" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/3b670fa94adb4f9fa1447b29825ebcc0/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Outros Locais - Estrangeiro
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Saúde / Medicina / Enfermagem
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Care Force
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7455055/dentista-para-trabalhar-na-holanda-ou-na-belgica/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7482854/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f/" style="font-weight:bold">
+          Sistema de Informações da República Portuguesa pretende recrutar colaboradores (m/f)
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7482854/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f/">
+             <img alt="Sistema de Informações da República Portuguesa" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Serviços Técnicos
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Sistema de Informações da República Portuguesa
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7482854/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div id="afscontainer1">
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7479993/colaboradores-estagios-profissionais-area-de-gestao-gestao-de-empresas-matematica-ou-estatistica/" style="font-weight:bold">
+          Colaboradores Estágios Profissionais área de Gestão, Gestão de Empresas, Matemática ou Estatística
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7479993/colaboradores-estagios-profissionais-area-de-gestao-gestao-de-empresas-matematica-ou-estatistica/">
+             <img alt="Grupo Quinta do Lago" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/e5776692736849528ebea8c811359210/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Faro
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Gestão de Empresas / Economia
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Grupo Quinta do Lago
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7479993/colaboradores-estagios-profissionais-area-de-gestao-gestao-de-empresas-matematica-ou-estatistica/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7483006/tecnico-a-de-cozinha-pastelaria-tecnico-a-de-restaurante-bar-ref-ct833-2021/" style="font-weight:bold">
+          Técnico(a) de Cozinha / Pastelaria, Técnico(a) de Restaurante / Bar  (ref.ª CT833-2021)
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7483006/tecnico-a-de-cozinha-pastelaria-tecnico-a-de-restaurante-bar-ref-ct833-2021/">
+             <img alt="Sistema de Informações da República Portuguesa" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Restauração / Bares / Pastelarias
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Sistema de Informações da República Portuguesa
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7483006/tecnico-a-de-cozinha-pastelaria-tecnico-a-de-restaurante-bar-ref-ct833-2021/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7482994/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-com-12-ano/" style="font-weight:bold">
+          Sistema de Informações da República Portuguesa pretende recrutar colaboradores (m/f) com 12.º ano
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7482994/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-com-12-ano/">
+             <img alt="Sistema de Informações da República Portuguesa" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Contabilidade / Finanças
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Sistema de Informações da República Portuguesa
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7482994/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-com-12-ano/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="my-1" style="padding: 0px; min-height: 90px;">
+       <!-- Net-Empregos -- Linha - Listagem -->
+       <ins class="adsbygoogle" data-ad-client="ca-pub-9487857958358554" data-ad-format="fluid" data-ad-layout-key="-h2+v-l-ix+10l" data-ad-slot="1994356687" style="display:block">
+       </ins>
+       <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+       </script>
+       <br/>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7445062/enfermeiros-m-f-para-holanda/" style="font-weight:bold">
+          Enfermeiros (m/f) para Holanda
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7445062/enfermeiros-m-f-para-holanda/">
+             <img alt="Care Force" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/3b670fa94adb4f9fa1447b29825ebcc0/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Outros Locais - Estrangeiro
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Saúde / Medicina / Enfermagem
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Care Force
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7445062/enfermeiros-m-f-para-holanda/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7482937/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-licenciados/" style="font-weight:bold">
+          Sistema de Informações da República Portuguesa pretende recrutar colaboradores (m/f) licenciados
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7482937/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-licenciados/">
+             <img alt="Sistema de Informações da República Portuguesa" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Gestão RH
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Sistema de Informações da República Portuguesa
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7482937/sistema-de-informacoes-da-republica-portuguesa-pretende-recrutar-colaboradores-m-f-licenciados/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7482928/licenciados-em-ciencia-da-informacao-ciencias-da-informacao-e-da-documentacao-ref-aq1113-2021/" style="font-weight:bold">
+          Licenciados em Ciência da Informação, Ciências da Informação e da Documentação (ref.ª AQ1113-2021)
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7482928/licenciados-em-ciencia-da-informacao-ciencias-da-informacao-e-da-documentacao-ref-aq1113-2021/">
+             <img alt="Sistema de Informações da República Portuguesa" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Educação / Formação
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Sistema de Informações da República Portuguesa
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7482928/licenciados-em-ciencia-da-informacao-ciencias-da-informacao-e-da-documentacao-ref-aq1113-2021/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7472438/customer-support-representative-swedish-speaking/" style="font-weight:bold">
+          Customer Support representative - Swedish Speaking
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7472438/customer-support-representative-swedish-speaking/">
+             <img alt="Global Shares " class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/f27fc6865d0746e08826649c515baf25/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Call Center / Help Desk
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Global Shares
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7472438/customer-support-representative-swedish-speaking/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7381506/empresa-de-construcao-civil-admite-encarregado-de-obra-para-lisboa/" style="font-weight:bold">
+          Empresa de Construção Civil Admite Encarregado de Obra para Lisboa
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7381506/empresa-de-construcao-civil-admite-encarregado-de-obra-para-lisboa/">
+             <img alt="SALVARIA, LDA" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/8b0c33e92d64407b8358c29f770edfbc/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Construção Civil
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             SALVARIA, LDA
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7381506/empresa-de-construcao-civil-admite-encarregado-de-obra-para-lisboa/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="my-1" style="padding: 0px; min-height: 250px;">
+       <!-- Net-Empregos -- Quadrado - Listagem -->
+       <ins class="adsbygoogle" data-ad-client="ca-pub-9487857958358554" data-ad-format="auto" data-ad-slot="5414726941" data-full-width-responsive="true" style="display:block">
+       </ins>
+       <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+       </script>
+       <br/>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7482948/tecnico-a-de-secretariado-ref-sc0357-2021/" style="font-weight:bold">
+          Técnico/a de Secretariado (ref.ª SC0357-2021)
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7482948/tecnico-a-de-secretariado-ref-sc0357-2021/">
+             <img alt="Sistema de Informações da República Portuguesa" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/372f9bbb98a244de8a6db630344bff14/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Lisboa
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Administração / Secretariado
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Sistema de Informações da República Portuguesa
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7482948/tecnico-a-de-secretariado-ref-sc0357-2021/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7481332/agente-era-vila-do-conde/" style="font-weight:bold">
+          Agente ERA - Vila do Conde
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7481332/agente-era-vila-do-conde/">
+             <img alt="ERA Vila do Conde" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/3c0747357d9940cb9151565fbd978fc8/logo-net-empregos.jpg" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Porto
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Imobiliário
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             ERA Vila do Conde
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7481332/agente-era-vila-do-conde/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7423344/auxiliar-de-armazem-3-vagas-santo-tirso/" style="font-weight:bold">
+          Auxiliar de armazém (3 vagas) - Santo Tirso
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7423344/auxiliar-de-armazem-3-vagas-santo-tirso/">
+             <img alt="CARVIDET - Higiene Industrial, Lda" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/50426449a97d44eda66e6ddf6fdf5210/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Porto
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Transportes / Logística
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             CARVIDET - Higiene Industrial, Lda
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7423344/auxiliar-de-armazem-3-vagas-santo-tirso/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <div class="job-item job-item-destaque media">
+       <label>
+        Oferta em Destaque
+       </label>
+       <div class="media-body align-self-center" style="padding-left: 5px;">
+        <h2 style="font-size:20px;margin: 0px -5x;">
+         <a href="/7408812/rececionista-night-auditor-grupo-quinta-do-lago-the-magnolia-hotel-m-f/" style="font-weight:bold">
+          Rececionista - Night Auditor (Grupo Quinta do Lago/ The Magnolia Hotel - (M/F)
+         </a>
+        </h2>
+        <div class="row">
+         <div class="col-2">
+          <div class="net-div-logo" style="border: 1px solid #dee2e6;display: flex;justify-content: center;align-items: center;margin: 0px -5px;">
+           <div style="width: 100px; height: 72px; width:100%; height:100%;">
+            <a href="/7408812/rececionista-night-auditor-grupo-quinta-do-lago-the-magnolia-hotel-m-f/">
+             <img alt="Grupo Quinta do Lago" class="net-img-logo" loading="lazy" src="https://upload.net-empregos.com/uploads/e5776692736849528ebea8c811359210/logo-net-empregos.png" style="width: auto; height: auto"/>
+            </a>
+           </div>
+          </div>
+         </div>
+         <div class="col-10" style="padding-left: 30px;">
+          <div class="job-ad-item">
+           <ul>
+            <li>
+             <i class="flaticon-calendar" style="color: #f19d35;">
+             </i>
+             16-6-2021
+            </li>
+            <li>
+             <i class="flaticon-pin" style="color: #d81e1e;">
+             </i>
+             Faro
+            </li>
+            <br/>
+            <li>
+             <i class="fa fa-tags" style="color: #4da95d;">
+             </i>
+             Hotelaria / Turismo
+            </li>
+            <br/>
+            <li style="font-weight:bold">
+             <i class="flaticon-work" style="color: #007bff;">
+             </i>
+             Grupo Quinta do Lago
+            </li>
+           </ul>
+          </div>
+         </div>
+        </div>
+        <div class="div-right">
+         <a class="apply-button" href="/7408812/rececionista-night-auditor-grupo-quinta-do-lago-the-magnolia-hotel-m-f/">
+          Ver Oferta
+         </a>
+        </div>
+       </div>
+      </div>
+      <!-- /1026826/Net-Empregos-Quadrado-All-Sizes -->
+      <div id="div-gpt-ad-1622029190076-0">
+       <script>
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1622029190076-0'); });
+       </script>
+      </div>
+      <div class="pagination-box pb text-center">
+       <nav aria-label="Pagina">
+        <ul class="pagination">
+         <li class="page-item">
+          <span class="page-link active">
+           1
+          </span>
+         </li>
+         <li class="page-item">
+          <a class="page-link" href="/pesquisa-empregos.asp?page=2&amp;categoria=0&amp;zona=0&amp;tipo=0">
+           2
+          </a>
+         </li>
+         <li class="page-item">
+          <a class="page-link" href="/pesquisa-empregos.asp?page=3&amp;categoria=0&amp;zona=0&amp;tipo=0">
+           3
+          </a>
+         </li>
+         <li class="page-item">
+          <a class="page-link" href="/pesquisa-empregos.asp?page=4&amp;categoria=0&amp;zona=0&amp;tipo=0">
+           4
+          </a>
+         </li>
+         <li class="page-item">
+          <a class="page-link d-none d-lg-block" href="/pesquisa-empregos.asp?page=2&amp;categoria=0&amp;zona=0&amp;tipo=0">
+           Próximo
+           <i class="fa fa-arrow-right">
+           </i>
+          </a>
+          <a class="page-link d-lg-none" href="/pesquisa-empregos.asp?page=2&amp;categoria=0&amp;zona=0&amp;tipo=0">
+           <i class="fa fa-arrow-right">
+           </i>
+          </a>
+         </li>
+        </ul>
+       </nav>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- job listing section end -->
+  <!-- Footer start -->
+  <footer class="footer" style="background: none; background-color: #376bff; color: #fff">
+   <div class="container footer-inner">
+    <div class="row">
+     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="footer-item clearfix">
+       <img alt="logo" class="f-logo" src="/img/logos/logo_white.png" style="height:60px"/>
+      </div>
+     </div>
+     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="footer-item">
+       <h4>
+        Net-Empregos
+       </h4>
+       <br/>
+       <ul class="links">
+        <li>
+         <a href="/sobre.asp">
+          Acerca
+         </a>
+        </li>
+        <li>
+         <a href="/politica-privacidade.asp">
+          Política de Privacidade e Termos de Utilização
+         </a>
+        </li>
+        <li>
+         <a href="/publicidade_info.asp">
+          Publicidade
+         </a>
+        </li>
+        <li>
+         <a href="/contactos.asp">
+          Contactos
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="footer-item">
+       <h4>
+        Ofertas Emprego
+       </h4>
+       <br/>
+       <ul class="links">
+        <li>
+         <a href="/pesquisa-empregos.asp">
+          Ultimas Ofertas
+         </a>
+        </li>
+        <li>
+         <a href="/mais-emprego-localidades.asp">
+          Ofertas por Cidades
+         </a>
+        </li>
+        <li>
+         <a href="/mais-emprego.asp">
+          Ofertas por Categoria
+         </a>
+        </li>
+        <li>
+         <a href="/mais-emprego-cidades-categorias-html.asp">
+          Ofertas por Distrito e Categoria
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="footer-item">
+       <h4>
+        Candidato
+       </h4>
+       <br/>
+       <ul class="links">
+        <li>
+         <a href="/loginc.asp">
+          Login Candidato
+         </a>
+        </li>
+        <li>
+         <a href="/registar_novo.asp">
+          Registar Candidato
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="footer-item clearfix">
+       <h4>
+        Empresa
+       </h4>
+       <br/>
+       <ul class="links">
+        <li>
+         <a href="/anuncio.asp">
+          Publicar Oferta Grátis
+         </a>
+        </li>
+        <li>
+         <a href="/LoginE.asp">
+          Login Empresa
+         </a>
+        </li>
+        <li>
+         <a href="/registar_empresa_2.asp">
+          Registar Empresa
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="footer-item clearfix">
+       <h4>
+        Siga-nos!
+       </h4>
+       <br/>
+       <ul class="links">
+        <li>
+         <a href="https://www.facebook.com/netempregos" target="_blank">
+          Facebook
+         </a>
+        </li>
+        <li>
+         <a href="https://twitter.com/netempregos" target="_blank">
+          Twitter
+         </a>
+        </li>
+        <li>
+         <a href="https://www.linkedin.com/company/net-empregos" target="_blank">
+          LinkedIn
+         </a>
+        </li>
+        <li>
+         <a href="https://feeds.feedburner.com/Net-empregos" target="_blank">
+          RSS Feed
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="sub-footer">
+    <div class="container">
+     <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-12">
+       <p class="copy">
+        2021
+        <a href="#">
+         Net-Empregos | Cenário Virtual Lda
+        </a>
+       </p>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-12">
+       <ul class="social-list clearfix">
+        <li>
+         <a href="https://www.facebook.com/netempregos" target="_blank">
+          <i class="fa fa-facebook">
+          </i>
+         </a>
+        </li>
+        <li>
+         <a href="https://twitter.com/netempregos" target="_blank">
+          <i class="fa fa-twitter">
+          </i>
+         </a>
+        </li>
+        <li>
+         <a href="https://www.linkedin.com/company/net-empregos" target="_blank">
+          <i class="fa fa-linkedin-square">
+          </i>
+         </a>
+        </li>
+        <li>
+         <a href="https://feeds.feedburner.com/Net-empregos" target="_blank">
+          <i class="fa fa-rss">
+          </i>
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+  </footer>
+  <!-- Footer end -->
+  <script src="/js/jquery-2.2.0.min.js">
+  </script>
+  <script src="/js/popper.min.js">
+  </script>
+  <script src="/js/bootstrap.min.js">
+  </script>
+  <script src="/js/bootstrap-submenu.js">
+  </script>
+  <script src="/js/bootstrap-select.min.js">
+  </script>
+  <script src="/js/jquery.easing.1.3.js">
+  </script>
+  <script src="/js/jquery.scrollUp.js">
+  </script>
+  <script src="/js/jquery.mCustomScrollbar.concat.min.js">
+  </script>
+  <script src="/js/moment.min.js">
+  </script>
+  <script src="/js/jquery.filterizr.js">
+  </script>
+  <!--<script  src="/js/jquery.magnific-popup.min.js"></script>-
+<script  src="/js/jquery.countdown.js"></script>-->
+  <script src="/js/app.js?v=1.01">
+  </script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="/js/ie10-viewport-bug-workaround.js">
+  </script>
+  <!-- Custom javascript -->
+  <script src="/js/ie10-viewport-bug-workaround.js">
+  </script>
+  <script type="text/javascript">
+   $('#btn-voltar').on( 'click', function () {
+        window.history.back();
+    } );
+  </script>
+  <script charset="utf-8" type="text/javascript">
+   var pageOptions = {
+    "pubId": "partner-pub-9487857958358554", // Confira se o ID do cliente est? correto.    
+    "query": "emprego", // Confira se a consulta correta foi inserida.
+    "styleId": "9617462265"
+  };
+
+  var adblock1 = {
+    "container": "afscontainer1"
+  };
+
+  var adblock2 = {
+    "container": "afscontainer2"
+  };
+
+  _googCsa('ads', pageOptions, adblock1, adblock2);
+  </script>
+ </body>
+</html>
